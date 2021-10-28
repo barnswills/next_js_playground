@@ -1,9 +1,18 @@
 import Link from "next/link";
+import Button from "@mui/material/Button";
+import Toolbar from "@mui/material/Toolbar";
+import AppBar from "@mui/material/AppBar";
+import Typography from "@mui/material/Typography";
+import React from "react";
 
 export default function IndexPage() {
   return (
-    <div onClick={() => console.log("about")}>
-      Hello World!!!!. <Link href="/about">About!</Link>
-    </div>
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">Texting</Typography>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 }
