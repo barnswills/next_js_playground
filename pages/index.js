@@ -1,5 +1,5 @@
-import React from "react";
+import Typography from "@mui/material/Typography";
 
 export default function IndexPage() {
-  return <h1>Home</h1>;
+  return <Typography>Home</Typography>;
 }

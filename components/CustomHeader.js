@@ -9,17 +9,17 @@ import Link from "next/link";
 const CustomHeader = () => {
   const links = [
     {
-      name: "home",
+      name: "Home",
       icon: <HomeIcon style={{ color: "white" }} />,
       route: "/"
     },
     {
-      name: "about",
+      name: "About",
       icon: <InfoIcon style={{ color: "white" }} />,
       route: "/about"
     },
     {
-      name: "contact",
+      name: "Contact",
       icon: <ContactPageIcon style={{ color: "white" }} />,
       route: "/contact"
     }
@@ -29,7 +29,7 @@ const CustomHeader = () => {
     <AppBar position="static">
       <Toolbar>
         {links.map((link) => (
-          <div style={{ marginRight: "10px" }}>
+          <div style={{ marginRight: "15px" }}>
             <Link href={link.route}>
               <div
                 style={{

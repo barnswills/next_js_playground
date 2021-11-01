@@ -5,7 +5,7 @@ import CustomHeader from "../components/CustomHeader";
 
 const Layout = ({ children }) => {
   return (
-    <>
+    <div>
       <CustomHeader />
       {children}
       <AppBar
@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
           <Typography color="black">CopyRight 2021</Typography>
         </Toolbar>
       </AppBar>
-    </>
+    </div>
   );
 };
 
