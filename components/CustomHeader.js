@@ -4,6 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import Link from "next/link";
 
 const CustomHeader = () => {
@@ -19,6 +20,11 @@ const CustomHeader = () => {
       route: "/about"
     },
     {
+      name: "Crypto",
+      icon: <MonetizationOnIcon style={{ color: "white" }} />,
+      route: "/crypto"
+    },
+    {
       name: "Contact",
       icon: <ContactPageIcon style={{ color: "white" }} />,
       route: "/contact"
@@ -28,8 +34,8 @@ const CustomHeader = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        {links.map((link) => (
-          <div style={{ marginRight: "15px" }}>
+        {links.map((link, index) => (
+          <div key={index} style={{ marginRight: "15px" }}>
             <Link href={link.route}>
               <div
                 style={{
