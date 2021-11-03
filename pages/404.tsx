@@ -4,19 +4,24 @@ import ErrorIcon from "@mui/icons-material/Error";
 import { red } from "@mui/material/colors";
 
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 
 import Center from "../components/Center";
 
-export default function Custom404() {
-  const route = useRouter();
+export default function Custom404(): JSX.Element {
+  const route: NextRouter = useRouter();
+
+  const timedRedirect: Function = () => {
+    const secondsUntilRedirect: number = 3;
+    setTimeout(() => {
+      route.push("/");
+    }, secondsUntilRedirect * 1000);
+  };
 
   useEffect(() => {
     console.log("Redirecting...");
 
-    setTimeout(() => {
-      route.push("/");
-    }, 3000);
+    timedRedirect();
   }, []);
 
   return (

@@ -4,6 +4,6 @@ interface IAboutPageProps {
   extras: string;
 }
 
-export default function AboutPage(props: IAboutPageProps) {
+export default function AboutPage(props: IAboutPageProps): JSX.Element {
   return <Typography>About us {props.extras ?? "."} </Typography>;
 }

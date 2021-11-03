@@ -2,7 +2,15 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-const CryptoCard = ({ price, icon, title }) => {
+export interface ICryptoCardProps {
+  price: number;
+  icon: JSX.Element;
+  title: string;
+}
+
+const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
+  const { price, icon, title } = props;
+
   return (
     <Card
       elevation={3}

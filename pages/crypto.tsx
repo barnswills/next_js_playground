@@ -7,14 +7,14 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import CryptoCard from "../components/CryptoCard";
 
 import { CryptoModel } from "../models/models";
+import { GetStaticProps } from "next";
 
-export async function getStaticProps(context) {
+export const getStaticProps: GetStaticProps = async () => {
   const res: Response = await fetch(
     "https://api.kucoin.com/api/v1/market/stats?symbol=MANA-USDT"
   );
 
   const result = await res.json();
-  console.log(result);
 
   let cryptoData: CryptoModel = {
     high: result ? result["data"].high : 0,
@@ -22,23 +22,17 @@ export async function getStaticProps(context) {
     name: result ? result["data"].symbol.split("-")[0] : ""
   };
 
-  console.log(cryptoData);
-
   return {
     props: { cryptoData } // will be passed to the page component as props
   };
-}
+};
 
-interface ICryproProps {
+interface ICryptoProps {
   cryptoData: CryptoModel;
 }
 
-const Crypto = (props: ICryproProps) => {
+const Crypto: React.FC<ICryptoProps> = (props: ICryptoProps) => {
   const { cryptoData } = props;
-
-  useEffect(() => {
-    console.log("mounted", cryptoData);
-  }, []);
 
   return (
     <div

@@ -1,4 +1,10 @@
-const Center = ({ children, direction = "column" }) => {
+import { FlexDirection } from "../models/models";
+
+interface ICenterProps {
+  direction?: FlexDirection;
+}
+
+const Center: React.FC<ICenterProps> = ({ children, direction = "column" }) => {
   return (
     <div
       style={{

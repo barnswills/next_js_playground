@@ -7,8 +7,10 @@ import ContactPageIcon from "@mui/icons-material/ContactPage";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import Link from "next/link";
 
-const CustomHeader = () => {
-  const links = [
+import { RouteProps } from "../models/models";
+
+const CustomHeader: React.FC = () => {
+  const links: RouteProps[] = [
     {
       name: "Home",
       icon: <HomeIcon style={{ color: "white" }} />,
@@ -34,7 +36,7 @@ const CustomHeader = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        {links.map((link, index) => (
+        {links.map((link: RouteProps, index: number) => (
           <div key={index} style={{ marginRight: "15px" }}>
             <Link href={link.route}>
               <div

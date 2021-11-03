@@ -3,11 +3,15 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import CustomHeader from "../components/CustomHeader";
 
-const Layout = ({ children }) => {
+interface ILayoutProps {
+  children: JSX.Element;
+}
+
+const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   return (
     <div>
       <CustomHeader />
-      {children}
+      {props.children}
       <AppBar
         position="fixed"
         sx={{ top: "auto", bottom: 0 }}
