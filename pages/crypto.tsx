@@ -6,17 +6,19 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 import CryptoCard from "../components/CryptoCard";
 
+import { CryptoModel } from "../models/models";
+
 export async function getStaticProps(context) {
-  const res = await fetch(
+  const res: Response = await fetch(
     "https://api.kucoin.com/api/v1/market/stats?symbol=MANA-USDT"
   );
 
   const result = await res.json();
   console.log(result);
 
-  let cryptoData = {
-    high: result ? result["data"].high : "$0",
-    low: result ? result["data"].low : "$0",
+  let cryptoData: CryptoModel = {
+    high: result ? result["data"].high : 0,
+    low: result ? result["data"].low : 0,
     name: result ? result["data"].symbol.split("-")[0] : ""
   };
 
@@ -27,7 +29,13 @@ export async function getStaticProps(context) {
   };
 }
 
-const Crypto = ({ cryptoData }) => {
+interface ICryproProps {
+  cryptoData: CryptoModel;
+}
+
+const Crypto = (props: ICryproProps) => {
+  const { cryptoData } = props;
+
   useEffect(() => {
     console.log("mounted", cryptoData);
   }, []);
