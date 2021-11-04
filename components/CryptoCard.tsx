@@ -13,7 +13,9 @@ export interface ICryptoCardProps {
 const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
   const { price, icon, title } = props;
 
-  const [gbpRate, setGbpRate] = useState<number>(0.73);
+  const defaultExchangeRate: number = 0.73;
+
+  const [gbpRate, setGbpRate] = useState<number>(defaultExchangeRate);
 
   const getLatestExchangeRates: Function = async (): Promise<void> => {
     const response: Response = await fetch(
@@ -22,7 +24,7 @@ const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
     const result = await response.json();
 
     if (result.result !== "error") {
-      setGbpRate(result.rates["GBP"] || 0.73);
+      setGbpRate(result.rates["GBP"] || defaultExchangeRate);
     }
   };
 
