@@ -15,7 +15,9 @@ const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
     <Card
       elevation={3}
       style={{
-        minWidth: "150px",
+        minWidth: "175px",
+        width: "20%",
+        maxWidth: "200px",
         margin: 10,
         display: "flex",
         justifyContent: "flex-start",
@@ -23,9 +25,9 @@ const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
       }}
     >
       <CardContent style={{ width: "100%" }}>
-        <div>
+        <>
           <Typography variant="body2">{title}</Typography>
-        </div>
+        </>
         <div
           style={{
             display: "flex",

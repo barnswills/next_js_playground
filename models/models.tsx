@@ -10,6 +10,12 @@ export interface RouteProps {
   route: string;
 }
 
+export interface CoffeeModel {
+  url: string;
+  name: string;
+  definition: string;
+}
+
 export type FlexDirection =
   | "column"
   | "inherit"

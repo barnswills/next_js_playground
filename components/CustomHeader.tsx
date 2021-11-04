@@ -5,6 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import CoffeeIcon from "@mui/icons-material/Coffee";
 import Link from "next/link";
 
 import { RouteProps } from "../models/models";
@@ -30,6 +31,11 @@ const CustomHeader: React.FC = () => {
       name: "Contact",
       icon: <ContactPageIcon style={{ color: "white" }} />,
       route: "/contact"
+    },
+    {
+      name: "Coffee",
+      icon: <CoffeeIcon style={{ color: "white" }} />,
+      route: "/coffee"
     }
   ];
 
