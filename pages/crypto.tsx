@@ -62,12 +62,11 @@ const Crypto: React.FC<ICryptoProps> = (props: ICryptoProps) => {
         justifyContent: "center"
       }}
     >
-      {cryptoData.map((crypto: CryptoModel) => (
-        <>
-          <Typography>Info for {crypto.name}</Typography>
+      {cryptoData.map((crypto: CryptoModel, index: number) => (
+        <div key={index}>
+          <Typography align="center">Info for {crypto.name}</Typography>
           <div
             style={{
-              margin: 10,
               display: "flex",
               width: "100%",
               flexDirection: "row",
@@ -86,7 +85,7 @@ const Crypto: React.FC<ICryptoProps> = (props: ICryptoProps) => {
               icon={<ArrowDownwardIcon style={{ color: "red" }} />}
             />
           </div>
-        </>
+        </div>
       ))}
     </div>
   );

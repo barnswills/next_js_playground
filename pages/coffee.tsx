@@ -41,8 +41,9 @@ export default function CoffeePage(): JSX.Element {
       }}
     >
       <Grid container spacing={2} alignItems="stretch" justifyContent="center">
-        {coffees.map((coffee: CoffeeModel) => (
+        {coffees.map((coffee: CoffeeModel, index: number) => (
           <ImageCard
+            key={index}
             name={coffee.name}
             details={coffee.definition}
             url={coffee.url}
