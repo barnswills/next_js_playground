@@ -1,6 +1,8 @@
 import Typography from "@mui/material/Typography";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { red, green, grey } from "@mui/material/colors";
 
 import CryptoCard from "../components/CryptoCard";
 
@@ -77,12 +79,17 @@ const Crypto: React.FC<ICryptoProps> = (props: ICryptoProps) => {
             <CryptoCard
               title="High"
               price={crypto.high}
-              icon={<ArrowUpwardIcon style={{ color: "green" }} />}
+              icon={<ArrowUpwardIcon style={{ color: green[500] }} />}
+            />
+            <CryptoCard
+              title="Average"
+              price={(Number(crypto.high) + Number(crypto.low)) / 2}
+              icon={<RemoveIcon style={{ color: grey[500] }} />}
             />
             <CryptoCard
               title="Low"
               price={crypto.low}
-              icon={<ArrowDownwardIcon style={{ color: "red" }} />}
+              icon={<ArrowDownwardIcon style={{ color: red[500] }} />}
             />
           </div>
         </div>

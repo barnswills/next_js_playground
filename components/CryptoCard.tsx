@@ -2,6 +2,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
+import { useEffect, useState } from "react";
+
 export interface ICryptoCardProps {
   price: number;
   icon: JSX.Element;
@@ -10,6 +12,23 @@ export interface ICryptoCardProps {
 
 const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
   const { price, icon, title } = props;
+
+  const [gbpRate, setGbpRate] = useState<number>(0.73);
+
+  const getLatestExchangeRates: Function = async (): Promise<void> => {
+    const response: Response = await fetch(
+      "https://open.er-api.com/v6/latest/USD"
+    );
+    const result = await response.json();
+
+    if (result.result !== "error") {
+      setGbpRate(result.rates["GBP"] || 0.73);
+    }
+  };
+
+  useEffect(() => {
+    getLatestExchangeRates();
+  }, []);
 
   return (
     <Card
@@ -37,7 +56,7 @@ const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
           }}
         >
           <Typography fontSize={22}>
-            £{(price * 0.73).toFixed(2) || 0}
+            £{(price * gbpRate).toFixed(2) || 0}
           </Typography>
           {icon}
         </div>
