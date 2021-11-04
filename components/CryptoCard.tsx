@@ -15,7 +15,7 @@ const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
     <Card
       elevation={3}
       style={{
-        width: "125px",
+        minWidth: "150px",
         margin: 10,
         display: "flex",
         justifyContent: "flex-start",
@@ -31,10 +31,10 @@ const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-evenly"
+            justifyContent: "space-between"
           }}
         >
-          <Typography variant="h6">
+          <Typography fontSize={22}>
             £{(price * 0.73).toFixed(2) || 0}
           </Typography>
           {icon}

@@ -11,7 +11,7 @@ const Layout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   return (
     <div>
       <CustomHeader />
-      {props.children}
+      <div style={{ marginBottom: 100 }}>{props.children}</div>
       <AppBar
         position="fixed"
         sx={{ top: "auto", bottom: 0 }}

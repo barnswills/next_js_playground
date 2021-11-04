@@ -5,5 +5,13 @@ interface IAboutPageProps {
 }
 
 export default function AboutPage(props: IAboutPageProps): JSX.Element {
-  return <Typography>About us {props.extras ?? "."} </Typography>;
+  const x: number[] = Array.from(Array(50).keys());
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {x.map((n) => (
+        <Typography key={n}>{n}</Typography>
+      ))}
+    </div>
+  );
 }

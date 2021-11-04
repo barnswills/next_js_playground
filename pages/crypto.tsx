@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import Typography from "@mui/material/Typography";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
@@ -9,9 +7,11 @@ import CryptoCard from "../components/CryptoCard";
 import { CryptoModel } from "../models/models";
 import { GetStaticProps } from "next";
 
-export const getStaticProps: GetStaticProps = async () => {
+const makeCryptoRequest: Function = async (
+  currency: string
+): Promise<CryptoModel> => {
   const res: Response = await fetch(
-    "https://api.kucoin.com/api/v1/market/stats?symbol=MANA-USDT"
+    `https://api.kucoin.com/api/v1/market/stats?symbol=${currency}-USDT`
   );
 
   const result = await res.json();
@@ -22,13 +22,30 @@ export const getStaticProps: GetStaticProps = async () => {
     name: result ? result["data"].symbol.split("-")[0] : ""
   };
 
-  return {
-    props: { cryptoData } // will be passed to the page component as props
+  return cryptoData;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const cryptoCurrencies: string[] = ["BTC", "ETH", "MANA", "MKR"];
+
+  const getCryptoData: Function = async (): Promise<CryptoModel[]> => {
+    const promises: Promise<CryptoModel>[] = cryptoCurrencies.map(
+      async (cur: string) => {
+        const cryptoResponse: CryptoModel = await makeCryptoRequest(cur);
+        return cryptoResponse;
+      }
+    );
+    const results: CryptoModel[] = await Promise.all(promises);
+    return results;
   };
+
+  const results = await getCryptoData();
+
+  return { props: { cryptoData: results } };
 };
 
 interface ICryptoProps {
-  cryptoData: CryptoModel;
+  cryptoData: CryptoModel[];
 }
 
 const Crypto: React.FC<ICryptoProps> = (props: ICryptoProps) => {
@@ -45,28 +62,32 @@ const Crypto: React.FC<ICryptoProps> = (props: ICryptoProps) => {
         justifyContent: "center"
       }}
     >
-      <Typography>Info for {cryptoData.name}</Typography>
-      <div
-        style={{
-          margin: 10,
-          display: "flex",
-          width: "100%",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <CryptoCard
-          title="High"
-          price={cryptoData.high}
-          icon={<ArrowUpwardIcon style={{ color: "green" }} />}
-        />
-        <CryptoCard
-          title="Low"
-          price={cryptoData.low}
-          icon={<ArrowDownwardIcon style={{ color: "red" }} />}
-        />
-      </div>
+      {cryptoData.map((crypto: CryptoModel) => (
+        <>
+          <Typography>Info for {crypto.name}</Typography>
+          <div
+            style={{
+              margin: 10,
+              display: "flex",
+              width: "100%",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <CryptoCard
+              title="High"
+              price={crypto.high}
+              icon={<ArrowUpwardIcon style={{ color: "green" }} />}
+            />
+            <CryptoCard
+              title="Low"
+              price={crypto.low}
+              icon={<ArrowDownwardIcon style={{ color: "red" }} />}
+            />
+          </div>
+        </>
+      ))}
     </div>
   );
 };
