@@ -28,14 +28,11 @@ const makeCryptoRequest: Function = async (
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const cryptoCurrencies: string[] = ["BTC", "ETH", "MANA", "MKR"];
+  const cryptoCurrencies: string[] = ["XTZ", "MANA", "MKR", "BTC", "ETH"];
 
   const getCryptoData: Function = async (): Promise<CryptoModel[]> => {
     const promises: Promise<CryptoModel>[] = cryptoCurrencies.map(
-      async (cur: string) => {
-        const cryptoResponse: CryptoModel = await makeCryptoRequest(cur);
-        return cryptoResponse;
-      }
+      async (cur: string) => await makeCryptoRequest(cur)
     );
     const results: CryptoModel[] = await Promise.all(promises);
     return results;
