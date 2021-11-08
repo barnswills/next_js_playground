@@ -34,7 +34,7 @@ const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
 
   return (
     <Card
-      elevation={3}
+      elevation={5}
       style={{
         minWidth: "175px",
         width: "20%",
