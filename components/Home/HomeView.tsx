@@ -18,9 +18,7 @@ export const HomeView: React.FC<IHomeViewProps> = (props: IHomeViewProps) => {
   return (
     <div>
       <HomeIcon
-        onClick={() => {
-          updateHomeState(incrementClick(homeState));
-        }}
+        onClick={() => updateHomeState(incrementClick(homeState))}
         style={{ fontSize: props.iconSize | 50, color: homeState.color }}
       />
       <Typography
