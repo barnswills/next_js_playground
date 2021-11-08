@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 
 import { useEffect, useState } from "react";
 
+import { cardStyle, cardContentBody } from "../styles/CryptoCard.style";
+
 export interface ICryptoCardProps {
   price: number;
   icon: JSX.Element;
@@ -33,30 +35,12 @@ const CryptoCard: React.FC<ICryptoCardProps> = (props: ICryptoCardProps) => {
   }, []);
 
   return (
-    <Card
-      elevation={5}
-      style={{
-        minWidth: "175px",
-        width: "20%",
-        maxWidth: "200px",
-        margin: 10,
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "center"
-      }}
-    >
+    <Card elevation={5} style={cardStyle}>
       <CardContent style={{ width: "100%" }}>
         <>
           <Typography variant="body2">{title}</Typography>
         </>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between"
-          }}
-        >
+        <div style={cardContentBody}>
           <Typography fontSize={22}>
             £{(price * gbpRate).toFixed(2) || 0}
           </Typography>

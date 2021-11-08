@@ -1,5 +1,11 @@
-import Typography from "@mui/material/Typography";
+import { HomeView } from "../components/Home/HomeView";
 
 export default function IndexPage(): JSX.Element {
-  return <Typography>Home</Typography>;
+  return (
+    <div>
+      <HomeView />
+      <HomeView />
+      <HomeView />
+    </div>
+  );
 }
