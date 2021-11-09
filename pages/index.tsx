@@ -4,7 +4,7 @@ export default function IndexPage(): JSX.Element {
   return (
     <div>
       <HomeView />
-      <HomeView />
+      <HomeView iconSize={75} />
       <HomeView />
     </div>
   );
